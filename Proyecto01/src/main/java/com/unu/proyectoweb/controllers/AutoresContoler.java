@@ -24,9 +24,10 @@ public class AutoresContoler extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("op") == null) {
 			// listar
+			listar(request, response);
 			return;
 		}
 		String operacion = request.getParameter("op");
@@ -34,6 +35,7 @@ public class AutoresContoler extends HttpServlet {
 
 		case "listar":
 			// listar
+			listar(request, response);
 			break;
 		case "nuevo":
 			// nuevo
@@ -41,9 +43,9 @@ public class AutoresContoler extends HttpServlet {
 		}
 	}
 
-	private void listar(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("listarAutores", modelo.listarAutores());
-		request.getRequestDispatcher("/autores/listaAutores.jsp");
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("listaAutores", modelo.listarAutores());
+		request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 	}
 
 	/**
@@ -53,7 +55,7 @@ public class AutoresContoler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -63,7 +65,7 @@ public class AutoresContoler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request, response);
 	}
 
 }
