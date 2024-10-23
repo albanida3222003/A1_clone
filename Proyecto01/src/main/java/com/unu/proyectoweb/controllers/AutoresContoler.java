@@ -42,6 +42,7 @@ public class AutoresContoler extends HttpServlet {
 			break;
 		case "nuevo":
 			// nuevo
+			request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
 			break;
 		}
 	}

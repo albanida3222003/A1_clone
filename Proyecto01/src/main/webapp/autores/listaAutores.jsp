@@ -9,7 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<% 
+	String url = "http://localhost:8080/ProtectoWebGB/";
+	%>
+	<a type = "button" href = "<%=url%>AutoresContoler?op=nuevo">Nuevo Autor</a>
+	
 	<table id="tabla">
 		<thead>
 			<tr>
