@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Iterator;
 
 import com.unu.proyectoweb.beans.Autor;
@@ -26,7 +27,7 @@ public class AutoresContoler extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		if (request.getParameter("op") == null) {
 			// listar
 			listar(request, response);
@@ -45,7 +46,7 @@ public class AutoresContoler extends HttpServlet {
 		}
 	}
 
-	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		request.setAttribute("listaAutores", modelo.listarAutores());
 		Iterator<Autor> it = modelo.listarAutores().iterator();
 		while(it.hasNext()) {
@@ -62,7 +63,12 @@ public class AutoresContoler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		try {
+			processRequest(request, response);
+		} catch (ServletException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -72,7 +78,12 @@ public class AutoresContoler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		try {
+			processRequest(request, response);
+		} catch (ServletException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
